@@ -9,7 +9,7 @@ PACKAGES_SH=$HERE/packages.sh
 # fi
 
 #echo -e "\n# $(date)" >$PACKAGES_SH
-echo >$PACKAGES_SH
+echo "#!/bin/bash -e" >$PACKAGES_SH
 zegrep "apt(-get)? (install|remove)" /var/log/apt/history* | sed 's/.*Commandline: //' >>$PACKAGES_SH
 snap list | awk -f $HERE/snap-install.awk >>$PACKAGES_SH
 

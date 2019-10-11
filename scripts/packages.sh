@@ -1,4 +1,4 @@
-
+#!/bin/bash -e
 apt install whois
 apt install kubuntu-desktop --no-install-recommends
 apt-get install dkms
