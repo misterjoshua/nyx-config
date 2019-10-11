@@ -4,11 +4,11 @@
 
 HERE=$(dirname $0)
 
-git stash push
+git stash push >/dev/null
 
-$HERE/refresh-packages.sh
-git add packages.sh
-git commit -m "Packages updated on $(date)"
-git push origin master
+$HERE/refresh-packages.sh >/dev/null
+git add packages.sh >/dev/null
+git commit -m "Packages updated on $(date)" >/dev/null
+git push origin master >/dev/null
 
-git stash pop
+git stash pop >/dev/null
