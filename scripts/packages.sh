@@ -1,5 +1,4 @@
 
-# Fri Oct 11 14:37:26 MDT 2019
 apt install whois
 apt install kubuntu-desktop --no-install-recommends
 apt-get install dkms
