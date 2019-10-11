@@ -1,0 +1,58 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: dnsmasq
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: dnsmasq
+  namespace: dnsmasq
+spec:
+  selector:
+    matchLabels:
+      app: dnsmasq
+  template:
+    metadata:
+      labels:
+        app: dnsmasq
+    spec:
+      containers:
+        - name: dnsmasq
+          image: andyshinn/dnsmasq:2.78
+          command:
+            - dnsmasq
+            - --keep-in-foreground
+            # - --log-queries
+            - --log-facility=-
+          securityContext:
+            capabilities:
+              add:
+                - NET_ADMIN
+          volumeMounts:
+            - name: config
+              mountPath: /etc/dnsmasq.d/
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 53
+              hostPort: 53
+              protocol: UDP
+            - containerPort: 53
+              hostPort: 53
+              protocol: TCP
+      volumes:
+        - name: config
+          configMap:
+            name: config
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: config
+  namespace: dnsmasq
+data:
+  10-nyx.conf: |
+    address=/nyx/192.168.1.110
