@@ -10,4 +10,6 @@ fi
 
 echo -e "\n# $(date)" >>$PACKAGES_SH
 zegrep "apt(-get)? (install|remove)" /var/log/apt/history* | sed 's/.*Commandline: //' >>$PACKAGES_SH
+snap list | awk -f $HERE/snap-install.awk >>$PACKAGES_SH
+
 chmod +x $PACKAGES_SH
