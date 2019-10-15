@@ -45,3 +45,8 @@ function lcontext() {
 }
 
 alias idea="intellij-idea-ultimate"
+
+if [ -x "$(command -v operator-sdk)" ]; then
+  # Operator SDK completion
+  source <(operator-sdk completion bash)
+fi
