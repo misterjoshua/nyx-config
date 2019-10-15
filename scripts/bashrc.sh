@@ -1,5 +1,8 @@
 # . ~/proj/nyx/scripts/bashrc.sh
 
+export M_CONTEXT=${M_CONTEXT:-SET_M_CONTEXT}
+export GO111MODULE=on
+
 # Connection string for a bastion server
 function mbastionconnect() {
   IP=$(kubectl --context $M_CONTEXT -n bastion get svc -ojsonpath="{.items[0].status.loadBalancer.ingress[0].ip}")
