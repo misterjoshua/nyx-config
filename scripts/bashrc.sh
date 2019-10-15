@@ -59,3 +59,8 @@ if [ -x "$(command -v operator-sdk)" ]; then
   # Operator SDK completion
   source <(operator-sdk completion bash)
 fi
+
+if [ -x "$(command -v helm)" ]; then
+  # Helm completion
+  source <(helm completion bash)
+fi
