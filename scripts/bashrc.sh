@@ -44,6 +44,13 @@ function lcontext() {
   kubectl config use-context microk8s
 }
 
+# Edit the bashrc
+function vibashrc() {
+  pushd .
+  cd ~/proj/nyx
+  code ~/proj/nyx
+}
+
 alias idea="intellij-idea-ultimate"
 
 # Python user bin
