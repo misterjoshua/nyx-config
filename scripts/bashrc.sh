@@ -46,6 +46,15 @@ function lcontext() {
 
 alias idea="intellij-idea-ultimate"
 
+# Python user bin
+if [ -d "$HOME/.local/bin" ]; then
+  PATH=$PATH:$HOME/.local/bin
+fi
+
+if [ -x "$(command -v aws_completer)" ]; then
+  complete -C "aws_completer" aws
+fi
+
 if [ -x "$(command -v operator-sdk)" ]; then
   # Operator SDK completion
   source <(operator-sdk completion bash)
