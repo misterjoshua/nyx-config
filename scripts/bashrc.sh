@@ -58,6 +58,11 @@ if [ -d "$HOME/.local/bin" ]; then
   PATH=$PATH:$HOME/.local/bin
 fi
 
+# Composer user bin
+if [ -d "$HOME/.config/composer/vendor/bin" ]; then
+  PATH=$PATH:$HOME/.config/composer/vendor/bin
+fi
+
 if [ -x "$(command -v aws_completer)" ]; then
   complete -C "aws_completer" aws
 fi
