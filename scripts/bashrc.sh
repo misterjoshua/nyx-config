@@ -51,7 +51,21 @@ function vibashrc() {
   code ~/proj/nyx
 }
 
+# Portworx cli
+pxctl() {
+  if [ -z "$PX_POD" ]; then
+    export PX_POD=$(kubectl get pods -lname=portworx -oname | head -n1)
+  fi
+
+  kubectl -n kube-system exec $PX_POD -- /opt/pwx/bin/pxctl $*
+}
+
 alias idea="intellij-idea-ultimate"
+
+# Go bin
+if [ -d "$HOME/go/bin" ]; then
+  PATH=$PATH:$HOME/go/bin
+fi
 
 # Python user bin
 if [ -d "$HOME/.local/bin" ]; then
