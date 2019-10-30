@@ -60,6 +60,7 @@ function pxctl() {
   kubectl -n kube-system exec $PX_POD -- /opt/pwx/bin/pxctl $*
 }
 
+alias resticproj='restic -r ~/.restic/proj'
 alias idea="intellij-idea-ultimate"
 
 # Go bin
