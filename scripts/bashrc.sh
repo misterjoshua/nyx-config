@@ -52,7 +52,7 @@ function vibashrc() {
 }
 
 # Portworx cli
-pxctl() {
+function pxctl() {
   if [ -z "$PX_POD" ]; then
     export PX_POD=$(kubectl get pods -lname=portworx -oname | head -n1)
   fi
