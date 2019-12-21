@@ -54,7 +54,7 @@ function vibashrc() {
 # Portworx cli
 function pxctl() {
   if [ -z "$PX_POD" ]; then
-    export PX_POD=$(kubectl get pods -lname=portworx -oname | head -n1)
+    export PX_POD=$(kubectl -n kube-system get pods -lname=portworx -oname | shuf -n1)
   fi
 
   kubectl -n kube-system exec $PX_POD -- /opt/pwx/bin/pxctl $*
@@ -62,6 +62,7 @@ function pxctl() {
 
 alias resticproj='restic -r ~/.restic/proj'
 alias idea="intellij-idea-ultimate"
+alias k="kubectl"
 
 # Go bin
 if [ -d "$HOME/go/bin" ]; then
@@ -85,6 +86,11 @@ fi
 if [ -x "$(command -v operator-sdk)" ]; then
   # Operator SDK completion
   source <(operator-sdk completion bash)
+fi
+
+# Kubectl completion
+if [ -x "$(command -v kubectl)" ]; then
+  source <(kubectl completion bash)
 fi
 
 if [ -x "$(command -v helm)" ]; then
